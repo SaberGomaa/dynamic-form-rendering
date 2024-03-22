@@ -1,0 +1,4 @@
+<label>{{control.Label}}</label>
+<select [class]="control.Class" (input)="sendData()" [formControl]="inputControl">
+  <option *ngFor="let item of control.Options">{{item}}</option>
+</select>

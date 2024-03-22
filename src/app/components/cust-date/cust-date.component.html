@@ -1,0 +1,3 @@
+<label> {{control.Label}}</label>
+<input type="date" [(ngModel)]="control.PlannedDate" (input)="sendData()" [formControl]="inputControl"
+    [class]="control.Class" [required]="control.Required" />

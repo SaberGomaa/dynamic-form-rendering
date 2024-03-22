@@ -1,0 +1,132 @@
+{
+    "reports": [
+        {
+            "Name": "Rep1",
+            "DisplayName": "نموذج 1"
+        }
+    ],
+    "options": [
+        {
+            "Name": "YesNo",
+            "Values": [
+                {
+                    "Label": "نعم",
+                    "Value": true
+                },
+                {
+                    "Label": "لا",
+                    "Value": false
+                }
+            ]
+        }
+    ],
+    "controls": [
+        {
+            "TagName": "div",
+            "Class": "row",
+            "Childs": [
+                {
+                    "TagName": "div",
+                    "Class": "col-md-3",
+                    "Childs": [
+                        {
+                            "TagName": "text",
+                            "Label": "رقم المعاينة ",
+                            "Bind": "item.ReviewNumber",
+                            "Name": "ReviewNumber",
+                            "Required": false,
+                            "Class": "form-control",
+                            "Errors": {
+                                "required": "اجبارى",
+                                "pattern": "غير صحيح"
+                            },
+                            "Pattern": "RegistrationNoFormat"
+                        }
+                    ]
+                },
+                {
+                    "TagName": "div",
+                    "Class": "col-md-3",
+                    "Childs": [
+                        {
+                            "TagName": "cust-date",
+                            "Label": "تاريخ المخطط",
+                            "Bind": "item.PlannedDate",
+                            "Name": "PlannedDate",
+                            "Required": true,
+                            "Errors": {
+                                "required": "اجبارى",
+                                "pattern": "غير صحيح"
+                            },
+                            "Pattern": "RegistrationNoFormat"
+                        }
+                    ]
+                },
+                {
+                    "TagName": "div",
+                    "Class": "col-md-3",
+                    "Childs": [
+                        {
+                            "TagName": "select",
+                            "Class": "form-control",
+                            "Label": "تم طلاء الوجهات",
+                            "Bind": "item.FrontHasBeenPainted",
+                            "Name": "FrontHasBeenPainted",
+                            "Required": true,
+                            "Errors": {
+                                "required": "اجبارى"
+                            },
+                            "Options": "YesNo"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "TagName": "div",
+            "Class": "row",
+            "Childs": [
+                {
+                    "TagName": "div",
+                    "Class": "col-md-7",
+                    "Childs": [
+                        {
+                            "TagName": "employee-list",
+                            "Label": "الادارة",
+                            "Bind": "item.EmployeeListValue",
+                            "Name": "EmployeeList",
+                            "Required": true,
+                            "Errors": {
+                                "required": "اجبارى",
+                                "pattern": "غير صحيح"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "TagName": "div",
+            "Class": "row",
+            "Childs": [
+                {
+                    "TagName": "div",
+                    "Class": "col-md-12",
+                    "Childs": [
+                        {
+                            "Class": "form-control",
+                            "TagName": "textarea",
+                            "Label": "ملاحظات",
+                            "Bind": "item.Notes",
+                            "Name": "Notes",
+                            "Required": false,
+                            "Errors": {
+                                "pattern": "غير صحيح"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
