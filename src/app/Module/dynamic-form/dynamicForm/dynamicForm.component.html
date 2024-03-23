@@ -18,12 +18,12 @@
                 <option *ngFor="let option of grandChild.Options" [value]="option.Value">{{ option.Label }}</option>
               </select>
             </ng-container>
-            <ng-container *ngIf="child.TagName === 'textarea'">
-              <label>{{ child.Label }}</label>
-              <textarea [formControlName]="child.Name" [class]="child.Class"></textarea>
-            </ng-container>
           </ng-container>
         </div>
+        <ng-container *ngIf="child.TagName === 'textarea'">
+          <label>{{ child.Label }}</label>
+          <textarea [formControlName]="child.Name" [class]="child.Class"></textarea>
+        </ng-container>
       </ng-container>
     </div>
   </ng-container>
