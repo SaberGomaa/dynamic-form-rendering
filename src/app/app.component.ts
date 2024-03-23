@@ -139,7 +139,8 @@ export class AppComponent {
             ]
           }
         ]
-      }
+      },
+
     ]
   };
 
@@ -164,8 +165,10 @@ export class AppComponent {
   }
 
   onSubmit() {
+    console.log('ssssssss');
+
     // Here you can access the form values using this.form.value
-    console.log(this.form.value);
+    console.log(this.form);
     // Do whatever you need with the form values, such as sending them to a server
   }
 

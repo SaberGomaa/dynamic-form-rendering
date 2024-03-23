@@ -12,8 +12,9 @@ import { CustDateComponent } from './components/cust-date/cust-date.component';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectComponent } from './components/select/select.component';
 import { CustTextareaComponent } from './components/cust-textarea/cust-textarea.component';
-import { DynamicFormComponent } from './Module/dynamic-form/dynamic-form.component';
 import { DatePickerInputComponent } from './components/DatePickerInput/DatePickerInput.component';
+import { DynamicFormComponent } from './Module/dynamic-form/dynamicForm/dynamicForm.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +23,8 @@ import { DatePickerInputComponent } from './components/DatePickerInput/DatePicke
     CustDateComponent,
     SelectComponent,
     CustTextareaComponent,
-    DynamicFormComponent,
-    DatePickerInputComponent
+    DatePickerInputComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let control of controls">
+    <div *ngIf="control.TagName === 'div'" [ngClass]="control.Class">
+      <ng-container *ngFor="let child of control.Childs">
+        <div *ngIf="child.TagName === 'div'" [ngClass]="child.Class">
+          <ng-container *ngFor="let grandChild of child.Childs">
+            <ng-container *ngIf="grandChild.TagName === 'text'">
+              <label>{{ grandChild.Label }}</label>
+              <input type="text" [formControlName]="grandChild.Name" [class]="grandChild.Class">
+            </ng-container>
+            <ng-container *ngIf="grandChild.TagName === 'cust-date'">
+              <label>{{ grandChild.Label }}</label>
+              <input type="date" [formControlName]="grandChild.Name" [class]="grandChild.Class">
+            </ng-container>
+            <ng-container *ngIf="grandChild.TagName === 'select'">
+              <label>{{ grandChild.Label }}</label>
+              <select [formControlName]="grandChild.Name" [class]="grandChild.Class">
+                <option *ngFor="let option of grandChild.Options" [value]="option.Value">{{ option.Label }}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngIf="child.TagName === 'textarea'">
+              <label>{{ child.Label }}</label>
+              <textarea [formControlName]="child.Name" [class]="child.Class"></textarea>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <button type="submit">Submit</button>
+</form>
