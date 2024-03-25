@@ -1,6 +1,31 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <ng-container *ngFor="let control of controls">
     <div *ngIf="control.TagName === 'div'" [ngClass]="control.Class">
+      <dynamicForm [controls]="control.Childs"></dynamicForm>
+    </div>
+    <ng-container *ngIf="control.TagName == 'text'">
+      <label>{{ control.Label }}</label>
+      <input type="text" [formControlName]="control.Name" [class]="control.Class">
+    </ng-container>
+    <ng-container *ngIf="control.TagName === 'cust-date'">
+      <label>{{ control.Label }}</label>
+      <input type="date" [formControlName]="control.Name" [class]="control.Class">
+    </ng-container>
+    <ng-container *ngIf="control.TagName === 'select'">
+      <label>{{ control.Label }}</label>
+      <select [formControlName]="control.Name" [class]="control.Class">
+        <option *ngFor="let option of control.Options" [value]="option">{{ option }}</option>
+      </select>
+    </ng-container>
+  </ng-container>
+</form>
+<!-- <button type="button" (click)="onSubmit()">Submit</button> -->
+
+
+<!-- 
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let control of controls">
+    <div *ngIf="control.TagName === 'div'" [ngClass]="control.Class">
       <ng-container *ngFor="let child of control.Childs">
         <div *ngIf="child.TagName === 'div'" [ngClass]="child.Class">
           <ng-container *ngFor="let grandChild of child.Childs">
@@ -28,4 +53,4 @@
     </div>
   </ng-container>
   <button type="submit">Submit</button>
-</form>
+</form> -->

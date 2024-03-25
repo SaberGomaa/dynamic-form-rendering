@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,49 +7,37 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./dynamicForm.component.css']
 })
 export class DynamicFormComponent implements OnInit {
-  @Input() controls: any[] = [];
+  @Input() controls!: any[];
+  @Output() formSubmit: EventEmitter<any> = new EventEmitter<any>();
+
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.formGroup = this.createFormGroup();
+    this.formGroup = this.fb.group({});
+    this.traverseControls(this.controls, this.formGroup);
   }
 
-  createFormGroup(): FormGroup {
-    const group: any = {};
-
-    this.traverseControls(this.controls, group);
-
-    return this.fb.group(group);
-  }
-
-  traverseControls(controls: any[], group: any, parentName: string = ''): void {
+  traverseControls(controls: any[], group: FormGroup, parentName: string = ''): void {
     controls.forEach(control => {
-      const controlName = control.Bind ? control.Bind.split('.')[1] : null;
-
+      const controlName = control.Name;
       if (control.TagName === 'div' && control.Childs) {
-        this.traverseControls(control.Childs, group, parentName);
-      } else if (controlName) {
-        group[controlName] = [null, this.getValidators(control)];
+        const nestedGroup: FormGroup = this.fb.group({});
+        this.traverseControls(control.Childs, nestedGroup, controlName);
+        group.addControl(controlName, nestedGroup);
+      } else {
+        const validators = control.Required ? [Validators.required] : [];
+        group.addControl(controlName, this.fb.control(null, validators));
       }
     });
   }
 
-  getValidators(control: any): any[] {
-    const validators = [];
-
-    if (control.Required) {
-      validators.push(Validators.required);
-    }
-
-    // Add other validators as needed
-
-    return validators;
-  }
-
-
   onSubmit(): void {
-    console.log(this.formGroup.value);
+    if (this.formGroup.valid) {
+      this.formSubmit.emit(this.formGroup);
+    } else {
+      console.log('Form is invalid');
+    }
   }
 }

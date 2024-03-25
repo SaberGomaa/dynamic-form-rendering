@@ -43,8 +43,8 @@ export class AppComponent {
                             {
                                 "TagName": "text",
                                 "Label": "رقم المعاينة ",
-                                "Bind": "item.ReviewNumber",
-                                "Name": "ReviewNumber",
+                                "bind": "reviewNumber",
+                                "name": "ReviewNumber",
                                 "Required": false,
                                 "Class": "form-control",
                                 "Errors": {
@@ -63,8 +63,8 @@ export class AppComponent {
                                 "TagName": "cust-date",
                                 "Label": "تاريخ المخطط",
                                 "Class": "form-control",
-                                "Bind": "item.PlannedDate",
-                                "Name": "PlannedDate",
+                                "bind": "PlannedDate",
+                                "name": "PlannedDate",
                                 "Required": true,
                                 "Errors": {
                                     "required": "اجبارى",
@@ -82,8 +82,8 @@ export class AppComponent {
                                 "TagName": "select",
                                 "Class": "form-control",
                                 "Label": "تم طلاء الوجهات",
-                                "Bind": "item.FrontHasBeenPainted",
-                                "Name": "FrontHasBeenPainted",
+                                "bind": "FrontHasBeenPainted",
+                                "name": "FrontHasBeenPainted",
                                 "Required": true,
                                 "Errors": {
                                     "required": "اجبارى"
@@ -106,8 +106,8 @@ export class AppComponent {
                                 "Class": "form-control",
                                 "TagName": "textarea",
                                 "Label": "ملاحظات",
-                                "Bind": "item.Notes",
-                                "Name": "Notes",
+                                "bind": "Notes",
+                                "name": "Notes",
                                 "Required": false,
                                 "Errors": {
                                     "pattern": "غير صحيح"
@@ -129,7 +129,9 @@ export class AppComponent {
         // Assuming controls is your JSON data
         this.form = this.createForm(this.jsonControls.controls);
     }
-
+    JsonToString(obj: any): string {
+        return JSON.stringify(obj);
+    }
     createForm(controls: any[]): FormGroup {
         const group: { [key: string]: any } = {};
 
@@ -141,12 +143,8 @@ export class AppComponent {
         return this.fb.group(group);
     }
 
-    onSubmit() {
-        console.log('ssssssss');
-
-        // Here you can access the form values using this.form.value
-        console.log(this.form);
-        // Do whatever you need with the form values, such as sending them to a server
+    onSubmit(formData: any) {
+        console.log('Form Dataaaaaaa:', this.form);
     }
 
 

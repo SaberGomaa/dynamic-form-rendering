@@ -1,31 +1,37 @@
-<form class="row" *ngIf="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="onSubmit(dynamicForm)">
-  <ng-container *ngFor="let control of controls">
-    <ng-container [ngSwitch]="control.TagName">
-      <ng-container *ngSwitchCase="'div'">
-        <div [class]="control.Class">
-          <custom-control [controls]="control.Childs" [class]="control.Class"></custom-control>
-        </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="'text'">
-        <div>
-          <input type="text" [class]="control.Class" [formControlName]="control.Name" />
-        </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="'cust-date'">
-        <div>
-          <DatePickerInput [control]="control" [formControlName]="control.Name"></DatePickerInput>
-        </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="'select'">
-        <div>
-          <cust-select [control]="control" [formControlName]="control.Name"></cust-select>
-        </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="'textarea'">
-        <div>
-          <textarea [class]="control.Class" [formControlName]="control.Name"></textarea>
-        </div>
-      </ng-container>
+<ng-container *ngFor="let control of controls">
+  <ng-container [ngSwitch]="control.TagName">
+    <ng-container *ngSwitchCase="'div'">
+      <div [class]="control.Class">
+        <custom-control [controls]="control.Childs" [class]="control.Class" [formdata]="formdata"></custom-control>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'text'">
+      <div>
+        <label for="">{{control.Label}}</label>
+        <input type="text" [class]="control.Class" (ngModelChange)="setBind(control.bind,$event)"
+          [ngModel]="getBind(control.bind)" [name]="control.name" />
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'cust-date'">
+      <div>
+        <label for="">{{control.Label}}</label>
+        <input type="date" [class]="control.Class" (ngModelChange)="setBind(control.bind,$event)"
+          [ngModel]="getBind(control.bind)" [name]="control.name" />
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+      <div>
+        <label for="">{{control.Label}}</label>
+        <input type="text" [class]="control.Class" (ngModelChange)="setBind(control.bind,$event)"
+          [ngModel]="getBind(control.bind)" [name]="control.name" />
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'textarea'">
+      <div>
+        <label for="">{{control.Label}}</label>
+        <textarea type="text" [class]="control.Class" (ngModelChange)="setBind(control.bind,$event)"
+          [ngModel]="getBind(control.bind)" [name]="control.name"></textarea>
+      </div>
     </ng-container>
   </ng-container>
-</form>
+</ng-container>

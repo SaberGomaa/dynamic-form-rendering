@@ -1,6 +1,9 @@
-<div style="background-color: #8b8b8b;">
-    <dynamicForm [controls]="jsonControls.controls"></dynamicForm>
-</div>
-<!-- <app-dynamic-form></app-dynamic-form> -->
-<!-- <custom-control [formGroup]="form" [controls]="jsonControls.controls"></custom-control>
-<button type="submit" (click)="onSubmit()">Submit</button> -->
+<!-- <div style="background-color: #8b8b8b;">
+    <dynamicForm [controls]="jsonControls.controls" (formSubmit)="onSubmit($event)"></dynamicForm>
+    <button type="button" (click)="onSubmit($event)">Submit</button>
+</div> -->
+
+{{JsonToString(data)}}
+
+<custom-control [controls]="jsonControls.controls" [formdata]="data"></custom-control>
+<!--<button type="submit" (click)="onSubmit()">Submit</button> -->
