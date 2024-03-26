@@ -1,9 +1,5 @@
-<!-- <div style="background-color: #8b8b8b;">
-    <dynamicForm [controls]="jsonControls.controls" (formSubmit)="onSubmit($event)"></dynamicForm>
-    <button type="button" (click)="onSubmit($event)">Submit</button>
-</div> -->
-
 {{JsonToString(data)}}
-
-<custom-control [controls]="jsonControls.controls" [formdata]="data"></custom-control>
-<!--<button type="submit" (click)="onSubmit()">Submit</button> -->
+<form (ngSubmit)="submitForm()">
+    <custom-control [controls]="jsonControls.controls" [formdata]="data"></custom-control>
+    <button type="submit" class="btn btn-info">save</button>
+</form>

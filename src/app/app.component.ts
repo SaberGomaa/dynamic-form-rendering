@@ -121,31 +121,14 @@ export class AppComponent {
         ]
     };
 
-    form!: FormGroup;
+    constructor() { }
 
-    constructor(private fb: FormBuilder) { }
-
-    ngOnInit() {
-        // Assuming controls is your JSON data
-        this.form = this.createForm(this.jsonControls.controls);
-    }
     JsonToString(obj: any): string {
         return JSON.stringify(obj);
     }
-    createForm(controls: any[]): FormGroup {
-        const group: { [key: string]: any } = {};
 
-        controls.forEach(control => {
-            // Assuming control.Name represents the form control's name
-            group[control.Name] = this.fb.control('');
-        });
-
-        return this.fb.group(group);
+    submitForm() {
+        console.log(this.data);
     }
-
-    onSubmit(formData: any) {
-        console.log('Form Dataaaaaaa:', this.form);
-    }
-
 
 }
